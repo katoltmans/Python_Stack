@@ -19,3 +19,6 @@ print(str.upper(hw))
 print(str.lower(hw))
 print(str.isalnum(hw))
 print(str.isalpha(hw))
+
+lower = "hello world"
+print(str.islower(lower))
