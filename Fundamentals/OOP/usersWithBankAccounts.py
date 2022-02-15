@@ -2,11 +2,10 @@
 class BankAccount:
     bank_name = "First National Dojo"
     all_accounts = []
-    def __init__(self, int_rate, balance, account_type): 
+    def __init__(self, int_rate, balance): 
         # your code here! (remember, instance attributes go here)
         self.account_balance = balance
         self.interest_rate = int_rate
-        self.accout_type = account_type
         BankAccount.all_accounts.append(self)
         #Method for making deposits to account
     def deposit(self, amount):
@@ -49,35 +48,42 @@ class BankAccount:
             account.display_account_info()
 #Class for given attributes of a User - tied to bank account
 class User:  
-    bank_name = "First National Dojo"
     def __init__(self, name, email_address):
         #Attributes include name, email address and account balance
         self.name = name
         self.email = email_address
-        self.account = BankAccount(int_rate=0.02, balance=0)
+        self.accounts = {}
+        #
     #Method to make deposits
-    def make_deposit(self, amount, account):
-        self.account.deposit(amount)
+    def make_deposit(self, account_name, amount):
+        self.accounts[account_name].deposit(amount)
         return self
     #Method to make withdrawals
-    def make_withdrawal(self, amount, account):
-        self.account.withdraw(amount)
+    def make_withdrawal(self, account_name, amount):
+        self.accounts[account_name].withdraw(amount)
         return self
     #Method to print a user's account balance
-    def display_user_balance(self):
-        print(f"User:  {self.name}, Balance: {self.account.account_balance:.2f}")
+    def display_user_balance(self, account_name):
+        print(f"User:  {self.name}, {account_name} Balance: {self.accounts[account_name].account_balance:.2f}")
+        return self
     #Method to transfer money between users
     def transfer_money(from_account, to_account, amount):
         from_account.make_withdrawal(amount)
         to_account.make_deposit(amount)
         from_account.display_user_balance()
         to_account.display_user_balance()
+    def add_account(self, account_name, balance, int_rate):
+        self.accounts[account_name] = BankAccount(int_rate, balance)
 
 Jake = User("Jake Peralta", "jperalta@99.com")
-Amy = User("Amy Santiago", "asantiago@99.com")
+Jake.add_account("Checking", 0, .02)
+Jake.add_account("Savings", 0, .02)
 
-Jake.make_deposit(263.15).make_deposit(1356.78).make_deposit(23.50).make_withdrawal(546.20).display_user_balance()
-Amy.make_deposit(1356.78).make_deposit(1356.78).make_withdrawal(546.20).make_withdrawal(546.20).make_withdrawal(546.20).make_withdrawal(546.20).display_user_balance()
+#Amy = User("Amy Santiago", "asantiago@99.com", "Savings")
 
-print()
-BankAccount.all_instances()
+Jake.make_deposit("Checking", 263.15).make_deposit("Savings", 1356.78).make_deposit("Checking", 23.50).make_withdrawal("Savings", 546.20).display_user_balance("Checking")
+Jake.display_user_balance("Savings")
+#Amy.make_deposit(1356.78).make_deposit(1356.78).make_withdrawal(546.20).make_withdrawal(546.20).make_withdrawal(546.20).make_withdrawal(546.20).display_user_balance()
+
+# print()
+# BankAccount.all_instances()
