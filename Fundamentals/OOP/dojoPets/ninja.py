@@ -1,4 +1,5 @@
 import random
+
 class Ninja:
     def __init__(self, first_name , last_name , treats , pet_food , pet):
         self.first_name = first_name
@@ -22,35 +23,5 @@ class Ninja:
 # bathe() - cleans the ninja's pet invoking the pet noise() method
     def bathe(self):
         self.pet.noise()
-
-class Pet:
-    def __init__(self, name , species , tricks, health = 0, energy = 0):
-        self.name = name
-        self.species = species
-        self.tricks = tricks
-        self.health = health
-        self.energy = energy
-
-    # sleep() - increases the pets energy by 25
-    def sleep(self):
-        self.energy += 25
-        return self
-# eat() - increases the pet's energy by 5 & health by 10
-    def eat(self):
-        self.energy += 5
-        self.health += 10
-        return self
-# play() - increases the pet's health by 5
-    def play(self, tricks):
-        self.health += 5
-        return self
-# noise() - prints out the pet's sound
-    def noise(self):
-        print("Meeeeeeeoooooooooow")
-
-Nytrix = Pet("Nytrix", "Bengal Cat", ["hunt", "stalk", "super zoom"])
-NinjaKat = Ninja("Kat", "Oltmans", ["meat stick", "turkey", "fish"], "cat food", Nytrix)
-
-NinjaKat.walk().feed().feed().bathe()
 
 
