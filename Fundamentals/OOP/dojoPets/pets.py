@@ -1,3 +1,4 @@
+import random
 class Pet:
     def __init__(self, name , species , tricks, health = 0, energy = 0):
         self.name = name
@@ -22,3 +23,13 @@ class Pet:
 # noise() - prints out the pet's sound
     def noise(self):
         print("Meeeeeeeoooooooooow")
+
+class Bengal(Pet):
+    def __init__(self, name, toys, health = 15, energy = 15):
+        super().__init__(name, "Bengal" , ["hunt", "stalk", "super speed"], health, energy)
+        self.toys = toys
+    
+    def get_toy(self):
+        print(f"{self.name} found {random.choice(self.toys)}! Look at {self.name} play!!")
+        return self
+    
