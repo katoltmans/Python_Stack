@@ -9,7 +9,11 @@ class Ninja:
         
 # walk() - walks the ninja's pet invoking the pet play() method
     def walk(self, ):
-        pass
+        self.pet.play(self)
+        print(f"Taking {self.pet.name} for a walk. Nytrix performs {random.choice(self.pet.tricks)}")
+        if self.pet.energy < 20 or self.pet.health < 20:
+            print("Oh no!! You need more pet food!")
+        return self
 # feed() - feeds the ninja's pet invoking the pet eat() method
     def feed(self):
         print(f"Feeding {self.pet.name} {random.choice(self.treats)}!")
@@ -17,7 +21,7 @@ class Ninja:
         return self
 # bathe() - cleans the ninja's pet invoking the pet noise() method
     def bathe(self):
-        pass
+        self.pet.noise()
 
 class Pet:
     def __init__(self, name , species , tricks, health = 0, energy = 0):
@@ -29,7 +33,8 @@ class Pet:
 
     # sleep() - increases the pets energy by 25
     def sleep(self):
-        pass
+        self.energy += 25
+        return self
 # eat() - increases the pet's energy by 5 & health by 10
     def eat(self):
         self.energy += 5
@@ -37,16 +42,15 @@ class Pet:
         return self
 # play() - increases the pet's health by 5
     def play(self, tricks):
-        pass
-        # if self.energy < 20 or self.health < 20:
-        #     print("Oh no!! You need more pet food!")
-        # else:
-        #     print(f"{name} is well fed!")
+        self.health += 5
+        return self
 # noise() - prints out the pet's sound
     def noise(self):
-        pass
+        print("Meeeeeeeoooooooooow")
 
-Nytrix = Pet("Nytrix", "Bengale Cat", "hunt")
+Nytrix = Pet("Nytrix", "Bengal Cat", ["hunt", "stalk", "super zoom"])
 NinjaKat = Ninja("Kat", "Oltmans", ["meat stick", "turkey", "fish"], "cat food", Nytrix)
 
-NinjaKat.feed()
+NinjaKat.walk().feed().feed().bathe()
+
+
