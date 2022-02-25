@@ -1,0 +1,70 @@
+SELECT * FROM books;
+
+-- Create 5 authors
+INSERT INTO authors (name, created_at, updated_at)
+VALUES ('Jane Austen', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+('Emily Dickinson', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+('Fyodor Dostoevsky', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+('William Shakespeare', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+('Lau Tzu', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+
+SELECT * FROM authors;
+
+-- Create 5 books
+INSERT INTO books (title, num_of_pages, created_at, updated_at)
+VALUES ('C Sharp', 428, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+('Java', 115, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+('Python', 192, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+('PHP', 672, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()),
+('Ruby', 848, CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
+
+SELECT * FROM books;
+
+-- Update c# name
+UPDATE books SET title = 'C#' WHERE id = 1;
+
+-- Update 4th Author to Bill Shakespeare
+UPDATE authors SET name = 'Bill Shakespeare' WHERE id = 4;
+
+-- Favorite 1st author to 1st two books
+INSERT INTO favorites (author_id, book_id)
+VALUES (1, 1), (1, 2);
+
+-- Favorite 2nd author to 1st three  books
+INSERT INTO favorites (author_id, book_id)
+VALUES (2, 1), (2, 2), (2, 3);
+
+-- Favorite 3rd author to 1st four books
+INSERT INTO favorites (author_id, book_id)
+VALUES (3, 1), (3, 2), (3, 3), (3, 4);
+
+-- Favorite 4th author to all books
+INSERT INTO favorites (author_id, book_id)
+VALUES (4, 1), (4, 2), (4, 3), (4, 4), (4, 5);
+
+Select * FROM favorites;
+
+-- Retreive all authors who favorited the 3rd book
+Select * FROM authors
+JOIN favorites ON authors.id = favorites.author_id
+JOIN books ON books.id = favorites.book_id
+WHERE books.id = 3;
+
+-- Delete Dickenson from 3rd books favorites
+DELETE FROM favorites WHERE author_id = 2 AND book_id = 3;
+
+-- Favorite 5th author to 2nd book
+INSERT INTO favorites (author_id, book_id)
+VALUES (5, 2);
+
+-- Retreive all books the 3rd author favorited
+Select authors.name, books.title FROM authors
+JOIN favorites ON authors.id = favorites.author_id
+JOIN books ON books.id = favorites.book_id
+WHERE authors.id = 3;
+
+-- Retrieve all authors who favorited the 5th book
+SELECT books.title, authors.name FROM books
+JOIN favorites ON books.id = favorites.book_id
+JOIN authors ON authors.id = favorites.author_id
+WHERE books.id = 5;
