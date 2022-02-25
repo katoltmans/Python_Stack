@@ -1,0 +1,49 @@
+SELECT * FROM world;
+
+SELECT * FROM countries;
+SELECT * FROM languages;
+SELECT * FROM cities;
+
+-- Display all countries that speak Slovene in descending order (percentage)
+SELECT countries.name, languages.language, languages.percentage FROM countries
+JOIN languages ON countries.id = languages.country_id 
+WHERE languages.language = 'Slovene'
+ORDER BY languages.percentage DESC;
+
+-- Display total number of cities in each country (count in descending order)
+SELECT countries.name, COUNT(cities.name) AS city_count FROM countries
+LEFT JOIN cities ON countries.id = cities.country_id
+GROUP BY countries.id
+ORDER BY city_count DESC;
+
+
+-- Display all cities in Mexico with poulation > 500,000 (population in descending order)
+SELECT cities.name AS city_name, cities.population AS population_above_500000, cities.country_id FROM countries
+JOIN cities ON countries.id = cities.country_id
+WHERE countries.id = 136 AND cities.population > 500000
+ORDER BY cities.population DESC;
+
+-- Display languages in each country with a percentage >89 in descending order
+SELECT countries.name AS country_name, languages.language, languages.percentage AS percentage_above_89_percent from countries
+JOIN languages ON countries.id = languages.country_id
+WHERE languages.percentage > 89
+ORDER BY languages.percentage DESC;
+
+-- Display all countries with surface area below 501 and population greater than 100,000
+SELECT countries.name AS country_name, countries.surface_area, countries.population FROM countries
+WHERE countries.surface_area < 501 AND countries.population > 100000;
+
+-- Display countries with constitutional monarchies, a capitol greater than 200 and life expectancy greater than 75 years
+SELECT countries.name AS country_name, countries.government_form, countries.capital, countries.life_expectancy FROM countries
+WHERE countries.government_form = 'Constitutional Monarchy' AND countries.capital > 200 AND countries.life_expectancy > 75;
+
+
+-- Display all cities of Argentina in the Buenos Aires district with a population > 500,000
+SELECT countries.name AS country_name, cities.name AS city_name, cities.district, cities.population FROM countries
+JOIN cities ON countries.id = cities.country_id
+WHERE countries.name = "Argentina" AND cities.district = "Buenos Aires" AND cities.population > 500000;
+
+-- Display the number of countries in each region
+SELECT countries.region, COUNT(countries.name) AS country_count FROM countries
+GROUP BY countries.region
+ORDER BY country_count DESC;
