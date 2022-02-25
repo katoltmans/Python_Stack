@@ -3,7 +3,7 @@ SELECT * FROM mydb;
 -- Create 3 new dojos
 INSERT INTO dojos (name, created_at, updated_at)
 VALUES ('Fists of Fury', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()), 
-('Tokyo Budokan', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()), 
+('Tokyo Budokan',  CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()), 
 ('Kyokushin Training Hall', CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP());
 
 SELECT * FROM dojos;
