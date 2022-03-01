@@ -9,9 +9,13 @@ def helloWorld():
 def dojo():
     return 'Dojo!'
 
-@app.route('/say/<name>/') #Add function to say name typed in URL
+@app.route('/say/<string:name>/') #Add function to say name typed in URL
 def say(name):
     return 'Hi ' + name + '!'
+
+@app.route('/repeat/<int:num>/<string:name>/')
+def repeatName(num, name):
+    return f'{name} <br>' * num
 
 if __name__=="__main__":
     app.run(debug=True) #Run app in debug mode
