@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: sans-serif;
+}
+
+th {
+    background: rgb(66, 66, 66);
+    color: gold;
+}
+
