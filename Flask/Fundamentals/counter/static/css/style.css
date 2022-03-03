@@ -1,0 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body * {
+    width: 800px;
+    margin: auto;
+    padding: 20px 100px;
+    text-align: center;
+    font-weight: bold;
+}
+
+p {
+    font-size: 150%;
+}
+
+form {
+    display:flex;
+}
+
+button {
+    margin: 10px 80px;
+    padding: 5px;
+    font-size: 120%;
+}
+
+button:active{
+    background-color: aquamarine;
+}
+
+.blue {
+    background-color: blue;
+    
+}
+
+.red {
+    background-color: red;
+}
+
