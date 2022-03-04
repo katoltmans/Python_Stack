@@ -10,9 +10,13 @@
 <body>
     <h1>Counter</h1>
     <p>{{session['count']}} times</p>
-    <form>
-            <button action="/count" method="POST" class="blue">Click</button>
-            <button action="/destroy_session" method+"POST" class="red">Reset</button>
-</form>
+    <div>
+        <form action="/count" method="POST">
+            <button class="blue">Click</button>
+        </form>
+        <form action="/destroy_session" method="POST">
+            <button class="red">Reset</button>
+        </form>
+    </div>
 </body>
 </html>

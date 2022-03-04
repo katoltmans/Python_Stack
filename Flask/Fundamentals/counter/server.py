@@ -4,7 +4,7 @@ app.secret_key = "Shhhhhh..." #secret key set for security purposes
 
 @app.route('/')
 def start():
-    if 'sum' not in session:
+    if 'count' not in session:
         session['count'] = 0
     return render_template("index.html")
 
@@ -14,8 +14,9 @@ def count():
     session['count'] += 1 #Session to count clicks
     return redirect('/')
 
-@app.route('/destroy_session')
+@app.route('/destroy_session', methods=['POST'])
 def destroy_session():
+    print("destroy")
     session.clear()  #clears the session and resets counter
     return redirect('/')  #Redirects user back to home route
 
