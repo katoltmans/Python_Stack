@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding:0;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+body {
+    width: 800px;
+    margin: 25px auto;
+    text-align: center;
+}
+
+p {
+    margin-top: 25px;
+}
+
+div {
+    background-color: #34393E;
+    color: goldenrod;
+    margin: 25px 30%;
+    padding: 10px;
+    border-radius: 15px;
+}
+form {
+    margin: 15px 0px;
+}
+
+input[type=number] {
+    font-size: 18pt;
+}
+
+button {
+    background-color: goldenrod;
+}
