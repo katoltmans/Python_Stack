@@ -14,6 +14,13 @@ def count():
     session['count'] += 1 #Session to count clicks
     return redirect('/')
 
+
+@app.route('/plus_two', methods=['POST'])
+def count2():
+    print("Start count")
+    session['count'] += 2 #Add 2 clicks each count
+    return redirect('/')
+
 @app.route('/destroy_session', methods=['POST'])
 def destroy_session():
     print("destroy")
