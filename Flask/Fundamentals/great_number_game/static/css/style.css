@@ -33,4 +33,13 @@ input[type=number] {
 
 button {
     background-color: goldenrod;
+    margin-top: 15px;
+    padding: 5px 10px;
+    font-weight: bold;
+    border: black 1px solid;
+    border-radius: 5px;
+}
+
+#green {
+    background-color: green;
 }

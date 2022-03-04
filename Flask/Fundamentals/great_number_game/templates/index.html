@@ -12,10 +12,23 @@
     <p>I am thinking of a number between 1 and 100</p>
     <div>
         <h2>Take a guess!!</h2>
-        <form>
-            <input type="number">
+        {% if 'user_guess' in session:%}
+            {% set user_guess =session['user_guess']|int %}
+            {% set answer =session['answer']|int %}
+            <h2>
+                {% if user_guess < answer: %}
+                    Too low!
+                {% else: %}
+                    Too high!
+                {% endif %}
+
+
+            </h2>
+        {% endif %}
+        <form action="/guess" method="POST">
+            <input type="number" name="user_guess">
+            <button>Guess</button>
         </form>
-        <button>Submit</button>
     </div>
 </body>
 </html>
