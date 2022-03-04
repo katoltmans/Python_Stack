@@ -6,19 +6,20 @@ app.secret_key = "Shhhhhh..." #secret key set for security purposes
 def start():
     if 'count' not in session:
         session['count'] = 0
+    else:
+        session['count'] += 1 #Session to count clicks
     return render_template("index.html")
 
 @app.route('/count', methods=['POST'])
 def count():
     print("Start count")
-    session['count'] += 1 #Session to count clicks
     return redirect('/')
 
 
 @app.route('/plus_two', methods=['POST'])
 def count2():
     print("Start count")
-    session['count'] += 2 #Add 2 clicks each count
+    session['count'] += 1 #Add 2 clicks each count
     return redirect('/')
 
 @app.route('/destroy_session', methods=['POST'])
