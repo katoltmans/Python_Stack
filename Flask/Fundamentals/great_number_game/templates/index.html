@@ -10,9 +10,8 @@
 <body>
     <h1>Welcome to the Great Number Game!!!</h1>
     <p>I am thinking of a number between 1 and 100</p>
-    <div>
-        <h2>Take a guess!!</h2>
-        {% if 'user_guess' in session:%}
+    {% if 'user_guess' in session:%}
+        <div id="wrong">
             {% set user_guess =session['user_guess']|int %}
             {% set answer =session['answer']|int %}
             <h2>
@@ -21,13 +20,15 @@
                 {% else: %}
                     Too high!
                 {% endif %}
-
-
             </h2>
-        {% endif %}
+        </div>
+    {% endif %}
+    <div class="guess_box">
+        <h2>Take a guess!!</h2>
+        
         <form action="/guess" method="POST">
-            <input type="number" name="user_guess">
-            <button>Guess</button>
+            <input type="number" name="user_guess" value="{{session['user_guess']}}">
+            <button type="submit">Guess</button>
         </form>
     </div>
 </body>

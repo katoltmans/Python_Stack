@@ -14,8 +14,9 @@ def home_page():
 
 @app.route('/guess', methods=['POST'])
 def check_guess():
-    session['user_guess'] = int(request.form["user_guess"])
-    if session['answer']==session["user_guess"]:
+    if 'user_guess' in request.form and request.form["user_guess"] != '':
+        session['user_guess'] = int(request.form["user_guess"])
+    if 'user_guess' in session and session['answer']==session["user_guess"]:
         return redirect('/correct')
     else:
         return redirect('/')
@@ -24,7 +25,7 @@ def check_guess():
 def correct():
     return render_template("correct.html")
 
-@app.route('/reset', methods=['POST'])
+@app.route('/reset', methods=['POST', 'GET'])
 def clear_session():
     print("destroy")
     session.clear()

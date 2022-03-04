@@ -17,12 +17,21 @@ p {
 }
 
 div {
-    background-color: #34393E;
     color: goldenrod;
     margin: 25px 30%;
     padding: 10px;
     border-radius: 15px;
 }
+
+.guess_box {
+    background-color: #34393E;
+}
+
+#wrong {
+    background-color: #d40000;
+    display: block;
+}
+
 form {
     margin: 15px 0px;
 }
