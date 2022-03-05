@@ -20,6 +20,10 @@ h1 {
     color: goldenrod;
 }
 
+.blue {
+    color: #057AFE;
+}
+
 p {
     margin: 15px 0px;
 }
@@ -30,6 +34,11 @@ input, select, textarea {
     border-radius: 5px;
 }
 
+select option {
+    background-color: black;
+    color: whitesmoke;
+}
+
 .submit {
     margin-top: 20px;
     padding: 5px;
@@ -37,4 +46,8 @@ input, select, textarea {
     background-color: goldenrod;
     border: black 1px solid;
     border-radius: 5px;
+}
+
+a {
+    margin-top: 15px;
 }
