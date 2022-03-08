@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, redirect
+from users import Users
 app = Flask(__name__)
 
 # Route for home page
@@ -11,9 +12,12 @@ def home():
 def add_user():
     print("Got Post Info")
     print(request.form)
-    first_name = request.form['first_name']
-    last_name = request.form['last_name']
-    email = request.form['email']
+    data = {
+        "first_name": request.form['first_name'],
+        "last_name": request.form['last_name'],
+        "email": request.form['email']
+    }
+    Users.add_new(data)
     return redirect("/users")
 
 @app.route('/user/new')
@@ -25,7 +29,8 @@ def display_add_user():
 def display_users():
     print("Show users")
     print(request.form)
-    return render_template("users.html")
+    users = Users.get_all()
+    return render_template("users.html", all_users = users)
 
 if __name__=="__main__":
     app.run(debug=True)
