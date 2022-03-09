@@ -16,7 +16,7 @@ class Users:
     def get_all(cls):
         query = "SELECT * FROM users;"
         # Connect to schema
-        results = connectToMySQL('users').query_db(query)
+        results = connectToMySQL("users").query_db(query)
         # Create empty list to append
         users = []
         # Iterate through db results
@@ -29,3 +29,17 @@ class Users:
     def add_new(cls, data):
         query = "INSERT INTO users (first_name, last_name, email, created_at, updated_at) VALUES (%(first_name)s, %(last_name)s, %(email)s, NOW(), NOW());"
         return connectToMySQL("users").query_db(query, data)
+    
+    # Method to view user info
+    @classmethod
+    def view_user(cls, num):
+        query = "SELECT * FROM users WHERE id=%(id)s;"
+        results = connectToMySQL("users").query_db(query, data = {"id": num})
+        # cls = self - passes in the latest accessed row in the query
+        print(results)
+        return cls(results[0])
+    
+    # Edit a user's information
+    @classmethod
+    def edit(cls, data):
+        query = "UPDATE users set name="

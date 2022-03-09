@@ -32,5 +32,22 @@ def display_users():
     users = Users.get_all()
     return render_template("users.html", all_users = users)
 
+# Route to view individual user info
+@app.route('/users/<int:num>/')
+def view_user(num):
+    user = Users.view_user(num)
+    return render_template("user_display.html", user = user)
+
+# Route to edit a user
+@app.route('/users/<int:num>/edit')
+def edit_user(num):
+    pass
+
+
+# Route to delete a user
+@app.route('/users/<int:num>/delete')
+def delete_user(num):
+    pass
+
 if __name__=="__main__":
     app.run(debug=True)
