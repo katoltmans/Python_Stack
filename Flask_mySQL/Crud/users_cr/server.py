@@ -39,15 +39,30 @@ def view_user(num):
     return render_template("user_display.html", user = user)
 
 # Route to edit a user
-@app.route('/users/<int:num>/edit')
-def edit_user(num):
-    pass
+@app.route('/users/edit', methods=['POST'])
+def edit_user():
+    print("Got Post Info")
+    print(request.form)
+    data = {
+        "id": request.form['id'],
+        "first_name": request.form['first_name'],
+        "last_name": request.form['last_name'],
+        "email": request.form['email']
+    }
+    Users.edit(data)
+    return redirect("/users")
 
+# Route to display edit user page
+@app.route('/users/<int:num>/edit')
+def display_edit(num):
+    user = Users.view_user(num)
+    return render_template("edit_user.html", user = user)
 
 # Route to delete a user
 @app.route('/users/<int:num>/delete')
 def delete_user(num):
-    pass
+    Users.delete_user(num)
+    return redirect("/users")
 
 if __name__=="__main__":
     app.run(debug=True)

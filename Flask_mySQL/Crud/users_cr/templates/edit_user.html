@@ -13,23 +13,25 @@
 <body>
     <div id="main">
         <div id="header">
-            <h1>Edit User</h1><a href="/users" id="home">Home</a>
+            <h1>Edit User {{user.id}} </h1><a href="/users" id="home">Home</a>
         </div>
-        <form class="row g-3" action="/users/<int:num>/edit" method="POST">
+        <form class="row g-3" action="/users/edit" method="POST">
+            <input type="hidden" name="id" value="{{user.id}}">
             <div class="col-md-6">
                 <label for="first_name" class="form-label">First Name: </label>
-                <input type="text" class="form-control" name="first_name">
+                <input type="text" class="form-control" name="first_name" value="{{user.first_name}}">
             </div>
             <div class="col-md-6">
             <label for="last_name" class="form-label">Last Name: </label>
-            <input type="text" class="form-control" name="last_name">
+            <input type="text" class="form-control" name="last_name" value="{{user.last_name}}">
             </div>
             <div class="col-12">
                 <label for="email" class="form-label">Email: </label>
-                <input type="email" class="form-control" name="email">
+                <input type="email" class="form-control" name="email" value="{{user.email}}">
             </div>
             <div class="col-12">
-                <button type="submit" class="btn btn-primary">Add User</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+                <a href="/users/{{user.id}}">Show User</a>
             </div>
             </form>
     </div>
