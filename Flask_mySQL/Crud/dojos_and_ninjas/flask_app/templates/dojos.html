@@ -12,26 +12,30 @@
 </head>
 <body>
     <div id="main">
-        <form action="">
+        <!-- Form to add a new dojo-->
+        <form action="/dojos/add" method="POST" class="flex_1">
             <h2>New Dojo</h2>
             <div class="mb-3">
-                <label for="formGroupExampleInput" class="form-label">Name: </label>
-                <input type="text" class="form-control" id="formGroupExampleInput" placeholder="New dojo name here">
+                <label for="formGroupExampleInput" class="form-label" name="name">Name: </label>
+                <input type="text" class="form-control" id="formGroupExampleInput" name="name" placeholder="New dojo name here">
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Create</button>
             </div>
         </form>
-        <div>
+        <!-- Card to diplay all available dojos with links to view-->
+        <div class="flex_1">
             <h2>All Dojos</h1>
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 18rem;" >
                     <div class="card-body">
                         {% for one_dojo in all_dojos %}
-                            <a<a href="">Add Ninja</a>
+                            <a href="/dojos/{{one_dojo.id}}">{{one_dojo.name}}</a>
+                            <br>
                         {% endfor %}
                     </div>
             </div>
-            <a href="">Add Ninja</a>
+            <!-- Link to add a new ninja to a dojo-->
+            <a href="/ninjas/new">Add Ninja</a>
         </div>
     </div>
 </body>

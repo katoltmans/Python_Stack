@@ -7,7 +7,23 @@ from flask_app.models import dojo # Create dojos with dojo.Dojo()
 def index():
     return redirect("/dojos")
 
-# Route to display dojos and add new
+# Route to display dojos
 @app.route("/dojos")
 def all_dojos():
-    return render_template("dojos.html")
+    return render_template("dojos.html", all_dojos = dojo.Dojo.display_all_dojos())
+
+# Route to add a new dojo to the database
+@app.route("/dojos/add", methods=["POST"])
+def add_dojo():
+    # Create a dojo dictionary
+    data = { 
+        "name": request.form["name"]
+    }
+    #Call on add_dojo classmethod
+    dojo.Dojo.add_dojo(data)
+    return redirect("/dojos")
+
+# Route to view ninjas in dojo
+@app.route("/dojos/<int:num>")
+def view_dojo_info(num):
+    pass
