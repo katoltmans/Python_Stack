@@ -21,3 +21,12 @@
     flex: 1;
     margin: 20px 40px;
 }
+
+.ninja {
+    width: 800px;
+    margin: 20px 10%;
+}
+
+table {
+    border: black 2px solid;
+}

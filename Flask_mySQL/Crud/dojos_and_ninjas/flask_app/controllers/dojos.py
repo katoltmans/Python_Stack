@@ -26,4 +26,8 @@ def add_dojo():
 # Route to view ninjas in dojo
 @app.route("/dojos/<int:num>")
 def view_dojo_info(num):
-    pass
+    # Display one dojo with it's ninjas
+    data = {
+        "id": num
+    }
+    return render_template("dojo_info.html", one_dojo = dojo.Dojo.display_one_dojo_with_ninjas(data))
