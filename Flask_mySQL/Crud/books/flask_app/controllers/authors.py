@@ -14,8 +14,14 @@ def display_author_page():
 
 # Route to process add author input
 @app.route("/authors/new", methods=["POST"])
-def add_author():
-    pass
+def new_author():
+    # Create an author dictionary
+    data = {
+        "name": request.form["name"]
+    }
+    # call new_author method
+    author.Author.new_author(data)
+    return redirect("/authors")
 
 # Route to view individual author info
 @app.route("/authors/<int:num>")

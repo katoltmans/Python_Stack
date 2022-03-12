@@ -15,7 +15,10 @@ class Author:
     # Method to add an author
     @classmethod
     def new_author(cls, data):
-        pass
+        query = "INSERT INTO authors (name) VALUES (%(name)s);"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        print(results)
+        return results
     
     # Method to display authors page
     @classmethod
