@@ -14,27 +14,27 @@
         <div>
             <h2>New Ninja</h2>
         </div>
-        <form class="row g-3">
+        <form action="/ninjas/new" method="POST" class="row g-3">
             <div class="col-12">
                 <label for="choose_dojo" class="form-label">Dojo: </label>
-                <select class="form-select" aria-label="Default select example">
+                <select name="dojo_id" class="form-select" aria-label="Default select example">
                     <option selected>Open this select menu</option>
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
+                    {% for one_dojo in all_dojos %}
+                        <option value="{{one_dojo.id}}">{{one_dojo.name}}</option>
+                    {% endfor %}
                 </select> 
             </div>
             <div class="col-12">
                 <label for="input_first_name" class="form-label">First Name: </label>
-                <input type="text" class="form-control" id="input_first_name" placeholder="First name...">
+                <input type="text" class="form-control" id="input_first_name" name="first_name" placeholder="First name...">
             </div>
             <div class="col-12">
-                <label for="input_last_name" class="form-label">Last Name: /label>
-                <input type="text" class="form-control" id="input_last_name" placeholder="Last name...">
+                <label for="input_last_name" class="form-label">Last Name: </label>
+                <input type="text" class="form-control" id="input_last_name" name="last_name" placeholder="Last name...">
             </div>
             <div class="col-md-6">
                 <label for="input_age" class="form-label">Age: </label>
-                <input type="number" class="form-control" id="input_age">
+                <input type="number" name="age" class="form-control" id="input_age">
             </div>
             <div class="col-12">
                 <button type="submit" class="btn btn-primary">Create</button>

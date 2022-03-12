@@ -1,6 +1,6 @@
 from flask_app import app
 from flask import render_template, request, redirect, session
-from flask_app.models import dojo # Create dojos with dojo.Dojo()
+from flask_app.models import dojo, ninja # Create dojos with dojo.Dojo()
 
 # home route - will reroute to /dojos
 @app.route("/")
@@ -30,4 +30,4 @@ def view_dojo_info(num):
     data = {
         "id": num
     }
-    return render_template("dojo_info.html", one_dojo = dojo.Dojo.display_one_dojo_with_ninjas(data))
+    return render_template("dojo_info.html", one_dojo = dojo.Dojo.display_one_dojo_with_ninjas(data), all_ninjas = ninja.Ninja.display_all_ninjas(data))

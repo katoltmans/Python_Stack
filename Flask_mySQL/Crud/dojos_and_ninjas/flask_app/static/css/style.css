@@ -10,9 +10,16 @@
     width: 1000px;
     margin:auto;
     display: flex;
+    
+}
+#main, .ninja {
+    background-color: #224050;
+    color: whitesmoke;
 }
 
-
+h2 {
+    color: #1199E1;
+}
 /*#home {
     text-align:left;
 }*/
@@ -23,10 +30,24 @@
 }
 
 .ninja {
-    width: 800px;
+    width: 600px;
     margin: 20px 10%;
+    background-color: #224050;
+    padding: 20px;
 }
 
-table {
+.table {
     border: black 2px solid;
+    color: whitesmoke;
+}
+a {
+    margin-top: 10px;
+}
+
+input {
+    border-radius: 5px;
+}
+
+button {
+    color: black;
 }
