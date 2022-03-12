@@ -1,0 +1,19 @@
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#main {
+    width: 1000px;
+    margin:auto;
+    display: flex;
+    
+}
+
+.flex_1 {
+    flex: 1;
+    margin: 20px 40px;
+}
