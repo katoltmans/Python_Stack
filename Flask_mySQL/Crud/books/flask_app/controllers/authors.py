@@ -23,10 +23,14 @@ def new_author():
     author.Author.new_author(data)
     return redirect("/authors")
 
-# Route to view individual author info
+# Route to view individual author info with books
 @app.route("/authors/<int:num>")
-def view_author():
-    pass
+def view_author_info(num):
+    # Display one author with favorite books of author
+    data = {
+        "id": num
+    }
+    return render_template("view_author.html", one_author = author.Author.view_favorite_books_of_author(data))
 
 # Route to add an author's favorite book
 @app.route("/authors/add_book", methods=["POST"])
