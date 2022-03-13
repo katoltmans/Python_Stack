@@ -16,7 +16,10 @@ class Book:
     #Method to add a book
     @classmethod
     def new_book(cls, data):
-        pass
+        query = "INSERT INTO books (title, num_of_pages, created_at, updated_at) VALUES (%(title)s, %(num_of_pages)s, NOW(), NOW());"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        print(results)
+        return results
     
     #Method to display books page
     @classmethod

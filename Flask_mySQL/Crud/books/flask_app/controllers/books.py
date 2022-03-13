@@ -8,9 +8,16 @@ def display_books_page():
     return render_template("books.html", all_books = book.Book.display_books())
 
 # Route to add a new book
-@app.route("/books/add")
+@app.route("/books/add", methods=["POST"])
 def add_book():
-    pass
+    # Create a book dictionary
+    data = {
+        "title": request.form["title"],
+        "num_of_pages": request.form["num_of_pages"]
+    }
+    # call new_author method
+    book.Book.new_book(data)
+    return redirect("/books")
 
 # Route to view individual book info
 @app.route("/books/<int:num>")
