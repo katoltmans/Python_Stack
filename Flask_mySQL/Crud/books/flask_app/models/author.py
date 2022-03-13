@@ -54,3 +54,10 @@ class Author:
                 this_author.books.append( book.Book(book_data) )
             return this_author
         
+        # Method to add  a favorite book to an author's list
+    @classmethod 
+    def add_favorite_book(cls, data):
+        query = "INSERT INTO favorites (author_id, book_id) VALUES (%(author_id)s, %(book_id)s)"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        print(results)
+        return results
