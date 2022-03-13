@@ -30,7 +30,9 @@ def view_author_info(num):
     data = {
         "id": num
     }
-    return render_template("view_author.html", one_author = author.Author.view_favorite_books_of_author(data), all_books = book.Book.display_books())
+    return render_template("view_author.html", \
+        one_author = author.Author.view_favorite_books_of_author(data), \
+            all_books = author.Author.view_books_not_favorited_by_author(data))
 
 # Route to add an author's favorite book
 @app.route("/authors/<int:num>/add_book", methods=["POST"])

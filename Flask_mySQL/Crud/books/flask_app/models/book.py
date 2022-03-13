@@ -53,3 +53,24 @@ class Book:
                 }
                 this_book.authors.append( author.Author(author_data) )
             return this_book
+        
+    # Method to display who have not favorited a book 
+    @classmethod
+    def view_authors_who_have_not_favorited_book(cls, data):
+        query = "SELECT * FROM authors WHERE authors.id NOT IN (SELECT author_id from favorites WHERE book_id =  %(id)s);"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        if len(results) == 0:  # No books are registered
+            return None
+        else:
+            authors = []
+            for row_from_db in results:
+            # Book data to display
+                author_data = {
+                    "id": row_from_db['id'],
+                    "name": row_from_db['name'],
+                    "created_at": row_from_db['created_at'],
+                    "updated_at": row_from_db['updated_at']
+                }
+                authors.append( author.Author(author_data) )
+            return authors
+    

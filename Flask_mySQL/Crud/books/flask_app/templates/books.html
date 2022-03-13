@@ -31,9 +31,9 @@
             <a href="/authors">Home</a>
         </div>
         <!--Section to display list of books with links to view pages-->
-        <div id="all_books">
+        <div id="all_books" >
             <h2>All Books</h1>
-                <div class="card" style="width: 18rem;" >
+            <div class="card flex_1" style="width: 18rem;">
                     <div class="card-body">
                         <!--Flask code to grab and display all authors-->
                         {% for one_book in all_books %}
@@ -41,7 +41,7 @@
                             <br>
                         {% endfor %}
                     </div>
-                </div>
+            </div>
         </div>
     </div>
 </body>

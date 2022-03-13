@@ -26,7 +26,9 @@ def view_book_info(num):
     data = {
         "id": num
     }
-    return render_template("view_book.html", one_book = book.Book.view_authors_who_favorited_book(data), all_authors = author.Author.display_authors())
+    return render_template("view_book.html", \
+        one_book = book.Book.view_authors_who_favorited_book(data), \
+        all_authors = book.Book.view_authors_who_have_not_favorited_book(data))
 
 # Route to favorite a book by an author
 @app.route("/books/<int:num>/add_book", methods=["POST"])
