@@ -39,7 +39,7 @@
             <form action="/authors/{{one_author.id}}/add_book" method="POST" class="flex_1">
                 
                 <div class="mb-3">
-                    <label for="formGroupExampleInput" class="form-label" name="name">Name: </label>
+                    <label for="formGroupExampleInput" class="form-label" name="name">Add Author's Favorite: </label>
                     <select name="book_id" class="form-select" aria-label="Default select example">
                         {% for this_book in all_books %}
                             <option value="{{this_book.id}}">{{this_book.title}}</option>

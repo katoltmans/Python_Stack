@@ -1,5 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
-from flask_app.models import book
+from flask_app.models import author
 
 class Book:
     schema = "books"  # Declare schema variable
@@ -33,3 +33,23 @@ class Book:
             all_books.append(book_instance) # Add an book to the list
         return all_books
     
+    # Method to display one book 
+    @classmethod
+    def view_authors_who_favorited_book(cls, data):
+        # LEFT JOINS needed since this is a many to many relationship
+        query = "SELECT * FROM books LEFT JOIN favorites ON favorites.book_id = books.id LEFT JOIN authors ON favorites.author_id = authors.id WHERE books.id = %(id)s;"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        if len(results) == 0:  # No books are registered
+            return None
+        else:
+            this_book = cls(results[0])
+            for row_from_db in results:
+            # Book data to display
+                author_data = {
+                    "id": row_from_db['authors.id'],
+                    "name": row_from_db['name'],
+                    "created_at": row_from_db['authors.created_at'],
+                    "updated_at": row_from_db['authors.updated_at']
+                }
+                this_book.authors.append( author.Author(author_data) )
+            return this_book
