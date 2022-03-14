@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding:0;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/*Survey Box*/
+#main {
+    width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    padding: 30px;
+    background-color: #33393E;
+    color: whitesmoke;
+}
+
+h1 {
+    color: goldenrod;
+}
+
+.blue {
+    color: #057AFE;
+}
+
+p {
+    margin: 15px 0px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+select option {
+    background-color: black;
+    color: whitesmoke;
+}
+
+.submit {
+    margin-top: 20px;
+    padding: 5px;
+    width: auto;
+    background-color: goldenrod;
+    border: black 1px solid;
+    border-radius: 5px;
+}
+
+a {
+    margin-top: 15px;
+}
