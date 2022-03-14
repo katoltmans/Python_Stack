@@ -18,6 +18,13 @@ def processNinja():
         "language": request.form["language"],
         "comment": request.form["comment"]
     }
+    
+    # Redirect home if there are errors in input
+    if not ninja.Ninja.validate_ninja(request.form):
+        return redirect('/')
+    
+    
+    # process form if there are no errors
     # Call new_ninja method
     num = ninja.Ninja.new_ninja(data)
     return redirect("/result/" + str(num))

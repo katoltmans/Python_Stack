@@ -1,4 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
+from flask import flash
 
 class Ninja:
     schema = "dojo_survey_schema"  # Declare schema variable
@@ -33,3 +34,21 @@ class Ninja:
             this_ninja = cls(results[0])
             
         return this_ninja
+    
+    # Static method to validate inputs
+    @staticmethod
+    def validate_ninja(ninja):
+        is_valid = True  # Assume state is true
+        if len(ninja['name']) < 2:
+            flash("Name must be at least 2 characters.")
+            is_valid = False
+        if len(ninja['location']) < 2:
+            flash("Please select a location.")
+            is_valid = False
+        if len(ninja['language']) < 2:
+            flash("Please select a language.")
+            is_valid = False
+        if len(ninja['comment']) < 3:
+            flash("Comment must be at least 3 characters.")
+            is_valid = False
+        return is_valid
