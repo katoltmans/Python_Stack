@@ -10,13 +10,13 @@
 <body>
     <div id="main">
         <p>The email address you entered ({{session['email']}}) <br> is a VALID address!  Thank you!</p>
+        <h3>Emails Of Those Who Can Follow Directions:</h3>
+        <ul>
+            {% for one_email in all_emails %}
+                <li>{{one_email.email}}  <a href="/delete/{{one_email.id}}">Delete</a></li>
+            {% endfor %}
+        </ul>
+        <a href="/">Return To Try Again</a>
     </div>
-    <h3>Emails Of Those Who Can Follow Directions:</h3>
-    <ul>
-        {% for one_email in all_emails %}
-            <li>{{one_email.email}}  <a href="/delete/{{one_email.id}}">Delete</a></li>
-        {% endfor %}
-    </ul>
-    <a href="/">Return To Try Again</a>
 </body>
 </html>
