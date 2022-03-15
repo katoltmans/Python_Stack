@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+#main {
+    width: 700px;
+    margin:auto;
+    display: flex;
+    justify-content: space-around;
+}
+#registration, #login {
+    margin: 20px;
+    padding: 15px 20px;
+    background-color: powderblue;
+}
+
+#registration h2 {
+    color: slateblue;
+    font-weight: bold;
+}
+
+#login h2 {
+    color: indigo;
+    font-weight: bold;
+}
+
+
+.submit {
+    background-color: mediumpurple;
+    padding: 4px 7px;
+    color: whitesmoke;
+    border-radius: 5px;
+    border: slategray 2px solid;
+}
