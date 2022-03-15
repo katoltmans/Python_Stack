@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+
+#main {
+    width: 500px;
+    margin: 40px auto;
+    padding: 20px;
+    font-family: sans-serif;
+    background-color: paleturquoise;
+}
+
+label {
+    font-size: 130%;
+}
+
+input {
+    font-size: 120%;
+}
+
+.submit {
+    background-color: slategray;
+    color: thistle;
+    border-radius: 5px;
+    border: darkslategray 2px solid;
+    padding: 2px 5px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.error_message {
+    background-color: green;
+}
