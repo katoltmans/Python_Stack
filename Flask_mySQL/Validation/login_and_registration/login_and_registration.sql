@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS `login_and_registration`.`users` (
   `email` VARCHAR(255) NULL,
   `birthdate` DATE NULL,
   `fav_language` VARCHAR(255) NULL,
-  `student` TINYINT NULL,
+  `student` VARCHAR(255) NULL,
+  `password` VARCHAR(255) NULL,
   `created_at` DATETIME NULL DEFAULT NOW(),
   `updated_at` DATETIME NULL DEFAULT NOW() ON UPDATE NOW(),
   PRIMARY KEY (`id`))
