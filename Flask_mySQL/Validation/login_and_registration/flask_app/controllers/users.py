@@ -15,6 +15,11 @@ def process_registration():
     # Redirect home if not a valid email
     if not user.User.validate_registration(request.form):
         return redirect("/")
+    # Create the hash of the password
+    pw_hash = bcrypt.generate_password_hash(request.form["password"])
+    pw_hash_confirm = bcrypt.generate_password_hash(request.form["confirm_password"])
+    print(pw_hash)
+    print(pw_hash_confirm)
     # Create an user dictionary
     data = {
         "first_name": request.form["first_name"],
@@ -23,8 +28,8 @@ def process_registration():
         "birthdate": request.form["birthdate"],
         "fav_language": request.form["fav_language"],
         "student": request.form["student"],
-        "password": request.form["password"],
-        "confirm_password": request.form["confirm_password"],
+        "password": pw_hash,
+        "confirm_password": pw_hash_confirm
     }
     # Call the new_user method to add the user to the database
     user_id = user.User.new_user(data)
@@ -59,9 +64,10 @@ def process_login():
 def display_dashboard():
     # Data to display the user's first name
     data = {"id": session['id']}
-    render_template("dashboard.html", one_user = user.User.display_user(data))
+    return render_template("dashboard.html", one_user = user.User.display_user(data))
 
 # Route to logout
 @app.route("/logout")
 def process_logout():
-    pass
+    session.clear()
+    return redirect("/")

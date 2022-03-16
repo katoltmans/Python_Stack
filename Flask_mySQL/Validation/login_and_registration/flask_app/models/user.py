@@ -11,6 +11,7 @@ class User:
     
     # Create the regular expression used to validate emails
     EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+    PASSWORD_REGEX = re.compile(r'^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,32}$')
     
     def __init__(self, data):  # Attributes of the user class
         self.id = data["id"]
@@ -23,7 +24,7 @@ class User:
         self.password = data["password"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
-        self.users = []
+        #self.users = []
     
     # Method to create a user
     @classmethod
@@ -69,46 +70,25 @@ class User:
         print(user['first_name'] + str(len(user['first_name'])))
         if len(user['first_name']) < 2:
             print("First name too short")
-            flash("Need at least 2 characters in your first name, ninja.")
+            flash("Need at least 2 characters in your first name, ninja.", "register")
             is_valid = False
         if len(user['last_name']) < 2:
-            flash("Need at least 2 characters in your last name, ninja.")
+            flash("Need at least 2 characters in your last name, ninja.", "register")
             is_valid = False
         # Compare input to regex
         if not User.EMAIL_REGEX.match(user['email']):
-            flash("Invalid email address.  Arr, try again matey!")
+            flash("Invalid email address.  Arr, try again matey!", "register")
             is_valid = False
         # Check for repeat emails
         if User.has_repeats(user):
-            flash("Email already exists. Give 'er another shot!")
+            flash("Email already exists. Give 'er another shot!", "register")
             is_valid = False
-# Check on this - password requires at least 8 characters, an uppercase letter and a number
-        if len(user['password']) < 8: 
-            flash("Ninjas require the utmost security. Please use a password with at least 8 characters, 1 uppercase letter, and 1 number.")
-            is_valid = False
-        l, u, d = 0, 0, 0
-        s = user['password']
-        if (len(s) >=8):
-            # Loop through characters of the password
-            for i in s:
-            # Count lowercase letters
-                if (i.islower()):
-                    l+=1
-                
-                if (i.isupper()):
-                    u+=1
-                
-                if (i.isnumeric()):
-                    d+=1
-        if(l>=1 and u>=1 and d>=1):
-            print("Valid Password")
-        else: 
-            print("Invalid password")
-            flash("Ninjas require the utmost security. Please use a password with at least 8 characters, 1 uppercase letter, and 1 number.")
+        if not User.PASSWORD_REGEX.match(user['password']):
+            flash("Ninjas require the utmost security. Please use a password with 8-32 characters and at least 1 uppercase letter, and 1 number.", "register")
             is_valid = False
         #Confirm if reentered password matches
         if user['confirm_password'] != user['password']:
-            flash("Sorry ninja, passwords must match.")
+            flash("Sorry ninja, passwords must match.", "register")
             is_valid = False
         return is_valid
     
@@ -117,7 +97,7 @@ class User:
         is_valid = True
         # Compare input to regex
         if not User.EMAIL_REGEX.match(user['email']):
-            flash("Invalid email address.  Arr, try again matey!")
+            flash("Invalid email address.  Arr, try again matey!", "login")
             is_valid = False
         
         #print("Invalid password")
