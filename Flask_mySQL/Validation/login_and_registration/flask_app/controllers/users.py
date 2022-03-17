@@ -42,26 +42,26 @@ def process_registration():
 # Route to process login
 @app.route("/login", methods=["POST"])
 def process_login():
-    # Redirect home if not a valid email
-    if not user.User.validate_login(request.form):
-        return redirect("/")
-    # Check if the username exists in the database
-    data = {
+    # Check to see if the email exists
+    email_data = {
         "email": request.form["email"]
-        }
-    user_in_db = user.User.get_by_email(data)
-    # Redirect home if user is not registered in the database
-    if not user.User.validate_login(request.form):
+    }
+    user_in_db = user.User.get_by_email(email_data)
+    # Redirect home if not a valid email
+    if not user.User.validate_login(request.form, user_in_db):
         return redirect("/")
     # Save session info
-    session['first_name'] = user_in_db.first_name
     session['id'] = user_in_db.id
+    session['first_name'] = user_in_db.first_name 
     # Redirect to the user's dashboard
     return redirect("/dashboard")
 
 # Route to display dashboard
 @app.route("/dashboard")
 def display_dashboard():
+    # Check to see if the user is in session
+    if "id" not in session:
+        return redirect("/")
     # Data to display the user's first name
     data = {"id": session['id']}
     return render_template("dashboard.html", one_user = user.User.display_user(data))

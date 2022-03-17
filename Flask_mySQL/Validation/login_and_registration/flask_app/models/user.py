@@ -57,7 +57,14 @@ class User:
     # Method to check if a user's email is in the database
     @classmethod
     def get_by_email(cls, data):
-        pass
+        query = "SELECT * FROM users WHERE email = %(email)s;"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        # Action when no matching email is found
+        if len(results) <1:  # Can also do ==0?
+            return False
+        return cls(results[0])
+        
+
     
     # Method to check password of user
     @classmethod
@@ -65,42 +72,50 @@ class User:
         pass
     
     # Static method to diplay flash messages for registration
-    def validate_registration(user):
+    def validate_registration(form_data):
         is_valid = True
-        print(user['first_name'] + str(len(user['first_name'])))
-        if len(user['first_name']) < 2:
+        print(form_data['first_name'] + str(len(form_data['first_name'])))
+        if len(form_data['first_name']) < 2:
             print("First name too short")
             flash("Need at least 2 characters in your first name, ninja.", "register")
             is_valid = False
-        if len(user['last_name']) < 2:
+        if len(form_data['last_name']) < 2:
             flash("Need at least 2 characters in your last name, ninja.", "register")
             is_valid = False
         # Compare input to regex
-        if not User.EMAIL_REGEX.match(user['email']):
+        if not User.EMAIL_REGEX.match(form_data['email']):
             flash("Invalid email address.  Arr, try again matey!", "register")
             is_valid = False
         # Check for repeat emails
-        if User.has_repeats(user):
+        if User.has_repeats(form_data):
             flash("Email already exists. Give 'er another shot!", "register")
             is_valid = False
-        if not User.PASSWORD_REGEX.match(user['password']):
+        if "fav_language" not in form_data:
+            flash("You forgot to tell us your favorite language!", "register")
+            is_valid = False
+        if not User.PASSWORD_REGEX.match(form_data['password']):
             flash("Ninjas require the utmost security. Please use a password with 8-32 characters and at least 1 uppercase letter, and 1 number.", "register")
             is_valid = False
         #Confirm if reentered password matches
-        if user['confirm_password'] != user['password']:
+        if form_data['confirm_password'] != form_data['password']:
             flash("Sorry ninja, passwords must match.", "register")
+            is_valid = False
+        if "checkbox" not in form_data: 
+            flash("For goodness sake... Check the box!!!", "register")
             is_valid = False
         return is_valid
     
     # Static method to diplay flash messages for login
-    def validate_login(user):
+    def validate_login(form_data, user_in_db):
         is_valid = True
-        # Compare input to regex
-        if not User.EMAIL_REGEX.match(user['email']):
-            flash("Invalid email address.  Arr, try again matey!", "login")
+        if user_in_db == False:
+            print("Invalid email")
             is_valid = False
-        
-        #print("Invalid password")
-        #flash("Sorry ninja, your password appears to be incorrect.")
-        #is_valid = False
+        # Check to see if password matches
+        if not bcrypt.check_password_hash(user_in_db.password, form_data['password']):
+            print("Invalid password")
+            is_valid = False
+        # If either credential is false, print flash message
+        if not is_valid:
+            flash("Invalid credentials", "login")
         return is_valid
