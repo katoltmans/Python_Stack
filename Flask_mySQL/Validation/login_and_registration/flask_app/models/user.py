@@ -4,6 +4,8 @@ from flask_app import app
 from flask_bcrypt import Bcrypt 
 bcrypt = Bcrypt(app)  # Set bcrypt function as a variable and invoke the function
 import re
+import time
+import datetime
 
 class User:
     # Assign the schema
@@ -90,6 +92,19 @@ class User:
         if User.has_repeats(form_data):
             flash("Email already exists. Give 'er another shot!", "register")
             is_valid = False
+        print("'"+form_data['birthdate']+"'")
+        if "birthdate" not in form_data or form_data["birthdate"] =="":
+            flash("You forgot to tell us your birthdate!", "register")
+            is_valid = False
+        else:
+            birthdate_timestamp = time.mktime(datetime.datetime.strptime(form_data['birthdate'], "%Y-%m-%d").timetuple())
+            now = time.time()
+            print(now)
+            print(birthdate_timestamp)
+            print(now - 378432000)
+            if birthdate_timestamp > (now - 378432000):
+                flash("Sorry Ninja, you're not old enough yet.!", "register")
+                is_valid = False
         if "fav_language" not in form_data:
             flash("You forgot to tell us your favorite language!", "register")
             is_valid = False
