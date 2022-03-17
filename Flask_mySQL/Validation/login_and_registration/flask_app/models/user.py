@@ -10,6 +10,7 @@ import datetime
 class User:
     # Assign the schema
     schema = "login_and_registration"
+    MIN_AGE = 12
     
     # Create the regular expression used to validate emails
     EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -101,8 +102,9 @@ class User:
             now = time.time()
             print(now)
             print(birthdate_timestamp)
-            print(now - 378432000)
-            if birthdate_timestamp > (now - 378432000):
+            min_age = 60 * 60 * 24 * 365 * User.MIN_AGE
+            print(now - min_age)
+            if birthdate_timestamp > (now - min_age):
                 flash("Sorry Ninja, you're not old enough yet.!", "register")
                 is_valid = False
         if "fav_language" not in form_data:
