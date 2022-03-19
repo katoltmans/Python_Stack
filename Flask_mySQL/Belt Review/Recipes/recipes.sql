@@ -50,18 +50,18 @@ ENGINE = InnoDB;
 -- Table `recipes_schema`.`users_has_recipes`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `recipes_schema`.`users_has_recipes` (
-  `users_id` INT NOT NULL,
-  `recipes_id` INT NOT NULL,
-  PRIMARY KEY (`users_id`, `recipes_id`),
-  INDEX `fk_users_has_recipes_recipes1_idx` (`recipes_id` ASC) VISIBLE,
-  INDEX `fk_users_has_recipes_users_idx` (`users_id` ASC) VISIBLE,
+  `user_id` INT NOT NULL,
+  `recipe_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `recipe_id`),
+  INDEX `fk_users_has_recipes_recipes1_idx` (`recipe_id` ASC) VISIBLE,
+  INDEX `fk_users_has_recipes_users_idx` (`user_id` ASC) VISIBLE,
   CONSTRAINT `fk_users_has_recipes_users`
-    FOREIGN KEY (`users_id`)
+    FOREIGN KEY (`user_id`)
     REFERENCES `recipes_schema`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_users_has_recipes_recipes1`
-    FOREIGN KEY (`recipes_id`)
+    FOREIGN KEY (`recipe_id`)
     REFERENCES `recipes_schema`.`recipes` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)

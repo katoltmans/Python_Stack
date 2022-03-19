@@ -2,7 +2,7 @@ from flask_app import app
 from flask_bcrypt import Bcrypt 
 bcrypt = Bcrypt(app)  # Set bcrypt function as a variable and invoke the function
 from flask import render_template, redirect, request, session
-from flask_app.models import user
+from flask_app.models import user, recipe
 
 # Route to display redister/login page
 @app.route("/")

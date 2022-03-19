@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- load Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <title>Recipes</title>
+</head>
+<body>
+    <!-- View Recipe header and allow to return to dashboard or logout-->
+    <div class="header">
+        <h1 class="flex1">Welcome <!--{{one_user.first_name}}-->! </h1>
+        <div class="flex1"></div>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <!-- Display recipe information -->
+    <div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h2 class="card-title">Recipe Name</h5>
+                <p class="card-text">description</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">under 30?</li>
+                <li class="list-group-item">instruction</li>
+                <li class="list-group-item">date made</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
