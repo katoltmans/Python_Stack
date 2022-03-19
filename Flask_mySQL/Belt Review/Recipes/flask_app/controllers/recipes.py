@@ -10,12 +10,7 @@ def display_add_new_recipe_page():
     # Check to see if the user is in session
     if "id" not in session:
         return redirect("/")
-    # Data to display the user's first name
-    data = {
-        "id": session['id'],
-        }
-    return render_template("add_recipe.html", \
-        all_recipes = recipe.Recipe.display_recipes())
+    return render_template("add_recipe.html")
 
 # Route to process new recipe info
 @app.route("/recipes/new/process", methods=["POST"])
@@ -26,7 +21,8 @@ def process_new_recipe():
         "description": request.form["description"],
         "instructions": request.form["instructions"],
         "date_made": request.form["date_made"],
-        "under_30": request.form["under_30"]
+        "under_30": request.form["under_30"],
+        "user_id": session["id"]
     }
     # call new_author method
     recipe.Recipe.new_recipe(data)

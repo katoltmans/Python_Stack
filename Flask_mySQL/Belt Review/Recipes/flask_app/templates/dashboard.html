@@ -30,10 +30,20 @@
                 <tbody>
                     {% for this_recipe in all_recipes %}
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                        </r>
+                            <td>{{this_recipe.name}}</td>
+                            <td>
+                                {% if this_recipe.under_30 == 1%}
+                                    Yes
+                                {% else %}
+                                    No
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/recipes/view">view instructions</a>
+                                <a href="">edit</a>
+                                <a href="">delete</a>
+                            </td>
+                        </tr>
                     {% endfor %}
                 </tbody>
             </table>
