@@ -22,6 +22,15 @@
         <!-- form to edit a recipe with pre-existing info filled in-->
         <div>
             <form action="/recipes/process/{{this_recipe.id}}" method="POST">
+                <div class="error_message">
+                    {% with messages = get_flashed_messages(category_filter=["recipe"]) %}
+                        {% if messages %}
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        {% endif%}
+                    {% endwith %}
+                </div>
                 <div>
                     <div class="mb-3">
                         <label for="name" class="form-label">Name: </label>

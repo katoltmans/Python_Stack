@@ -24,6 +24,9 @@ def process_new_recipe():
         "under_30": request.form["under_30"],
         "user_id": session["id"]
     }
+    # Redirect to dashboard if not a valid recipe
+    if not recipe.Recipe.validate_recipe(request.form):
+        return redirect("/recipes/new")
     # call new_author method
     recipe.Recipe.new_recipe(data)
     return redirect("/dashboard")
@@ -71,6 +74,9 @@ def edit_recipe(num):
         "date_made": request.form["date_made"],
         "under_30": request.form["under_30"],
     }
+    # Redirect to dashboard if not a valid recipe
+    if not recipe.Recipe.validate_recipe(request.form):
+        return redirect("/recipes/edit/" + str(num))
     recipe.Recipe.edit(data)
     return redirect("/dashboard")
 

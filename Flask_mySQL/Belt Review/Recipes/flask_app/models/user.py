@@ -74,10 +74,10 @@ class User:
         print(form_data['first_name'] + str(len(form_data['first_name'])))
         if len(form_data['first_name']) < 2:
             print("First name too short")
-            flash("Need at least 2 characters in your first name, ninja.", "register")
+            flash("Need at least 2 characters in your first name, Chef.", "register")
             is_valid = False
         if len(form_data['last_name']) < 2:
-            flash("Need at least 2 characters in your last name, ninja.", "register")
+            flash("Need at least 2 characters in your last name, Chef.", "register")
             is_valid = False
         # Compare input to regex
         if not User.EMAIL_REGEX.match(form_data['email']):
@@ -88,11 +88,11 @@ class User:
             flash("Email already exists. Give 'er another shot!", "register")
             is_valid = False
         if not User.PASSWORD_REGEX.match(form_data['password']):
-            flash("Ninjas require the utmost security. Please use a password with 8-32 characters and at least 1 uppercase letter, and 1 number.", "register")
+            flash("Chefs require the utmost security. Please use a password with 8-32 characters and at least 1 uppercase letter, and 1 number.", "register")
             is_valid = False
         #Confirm if reentered password matches
         if form_data['confirm_password'] != form_data['password']:
-            flash("Sorry ninja, passwords must match.", "register")
+            flash("Sorry Chef, passwords must match.", "register")
             is_valid = False
         return is_valid
     

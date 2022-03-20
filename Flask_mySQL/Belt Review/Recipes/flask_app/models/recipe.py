@@ -65,3 +65,21 @@ class Recipe:
         results = connectToMySQL(cls.schema).query_db(query, data)
         print(results)
         return results
+    
+    # Static method to diplay flash messages for recipe entries
+    def validate_recipe(form_data):
+        is_valid = True
+        print(form_data['name'] + str(len(form_data['name'])))
+        if len(form_data['name']) < 3:
+            print("Recipe name is too short")
+            flash("Need at least 3 characters in your recipe name, Chef.", "recipe")
+            is_valid = False
+        if len(form_data['description']) < 3:
+            print("Recipe description is too short")
+            flash("Need at least 3 characters in your recipe description, Chef.", "recipe")
+            is_valid = False
+        if len(form_data['instructions']) < 3:
+            print("Recipe instructions are too short")
+            flash("Need at least 3 characters in your recipe instructions, Chef.", "recipe")
+            is_valid = False
+        return is_valid
