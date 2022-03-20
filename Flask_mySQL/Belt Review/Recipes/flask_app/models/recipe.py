@@ -57,3 +57,11 @@ class Recipe:
     def edit(cls, data):
         query = "UPDATE recipes set name=%(name)s, description=%(description)s, instructions=%(instructions)s, date_made=%(date_made)s, under_30=%(under_30)s, updated_at=NOW() WHERE id=%(id)s;"
         return connectToMySQL(cls.schema).query_db(query, data)
+    
+    # Method to delete a recipe
+    @classmethod
+    def delete_recipe(cls, data):
+        query = "DELETE FROM recipes WHERE id=%(id)s;"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        print(results)
+        return results

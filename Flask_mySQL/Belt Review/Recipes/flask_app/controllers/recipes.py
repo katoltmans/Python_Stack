@@ -75,6 +75,10 @@ def edit_recipe(num):
     return redirect("/dashboard")
 
 # Route to delete an existing recipe
-@app.route("/recipes/delete")
-def delete_recipe():
-    pass
+@app.route("/recipes/delete/<int:num>")
+def delete_recipe(num):
+    data = {
+        "id": num
+    }
+    recipe.Recipe.delete_recipe(data)
+    return redirect("/dashboard")
