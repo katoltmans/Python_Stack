@@ -18,3 +18,15 @@
 a {
     margin: 0 30px;
 }
+
+.card {
+    margin: 30px auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+    background-color: black;
+    color: goldenrod;
+}
+
+.nowrap {
+    white-space: pre-wrap;
+}

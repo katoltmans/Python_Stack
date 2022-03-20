@@ -29,8 +29,8 @@ def process_new_recipe():
     return redirect("/dashboard")
 
 # Route to view an existing recipe
-@app.route("/recipes/view")
-def view_recipe():
+@app.route("/recipes/view/<int:num>")
+def view_recipe(num):
     # Check to see if the user is in session
     if "id" not in session:
         return redirect("/")
@@ -38,9 +38,10 @@ def view_recipe():
     data = {
         "id": session['id'],
         "first_name": session['first_name'],
+        "recipe_id": num
         }
-    return render_template("view_recipe.html", \
-        this_recipe = recipe.Recipe.view_one_recipe())
+    return render_template("view_recipe.html", one_user = user.User.display_user(data), \
+        this_recipe = recipe.Recipe.view_one_recipe(data))
 
 # Route to edit an existing recipe
 @app.route("/recipes/edit")

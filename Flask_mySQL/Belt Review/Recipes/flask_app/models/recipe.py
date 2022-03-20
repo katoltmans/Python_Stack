@@ -27,23 +27,9 @@ class Recipe:
         print(results)
         return results
     
-    # Method to display one recipe 
-    @classmethod
-    def view_one_recipe(cls, data):
-        query = "Select * from recipes WHERE recipes.id = %(id)s;"
-        results = connectToMySQL(cls.schema).query_db(query, data)
-        print(results)
-        all_recipes = [] # List to hold all recipes
-        if not results or len(results) == 0:  # No recipes are registered to a user
-            return None
-        for one_recipe in results:
-            all_recipes.append(cls(one_recipe))  # Add a recipe to the list
-        return all_recipes
-    
     # Method to display all recipes
     @classmethod
     def display_recipes(cls, data):
-        # JOIN only needed since this is a one to many relationship
         query = "SELECT * FROM recipes WHERE user_id = %(id)s;"
         results = connectToMySQL(cls.schema).query_db(query, data)
         all_recipes = []
@@ -53,6 +39,16 @@ class Recipe:
             for row_from_db in results:
                 #Create a recipe name instance
                 one_recipe = cls(row_from_db)
-                # User data to join
+                # Add recipe to the recipe list
                 all_recipes.append(one_recipe)
         return all_recipes
+    
+    # Method to display one recipe 
+    @classmethod
+    def view_one_recipe(cls, data):
+        query = "Select * from recipes WHERE id = %(recipe_id)s;"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        print(results)
+        this_recipe = cls(results[0])
+        return this_recipe
+    

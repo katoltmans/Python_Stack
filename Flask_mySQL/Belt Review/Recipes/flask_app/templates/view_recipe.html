@@ -10,26 +10,35 @@
     <title>Recipes</title>
 </head>
 <body>
-    <!-- View Recipe header and allow to return to dashboard or logout-->
-    <div class="header">
-        <h1 class="flex1">Welcome <!--{{one_user.first_name}}-->! </h1>
-        <div class="flex1"></div>
-            <a href="/dashboard">Dashboard</a>
-            <a href="/logout">Logout</a>
-        </div>
-    </div>
-    <!-- Display recipe information -->
-    <div>
-        <div class="card" style="width: 18rem;">
-            <div class="card-body">
-                <h2 class="card-title">Recipe Name</h5>
-                <p class="card-text">description</p>
+    <div id="main">
+        <!-- View Recipe header and allow to return to dashboard or logout-->
+        <div class="header">
+            <h1 class="flex1">Welcome {{one_user.first_name}}! </h1>
+            <div class="flex1"></div>
+                <a href="/dashboard">Dashboard</a>
+                <a href="/logout">Logout</a>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">under 30?</li>
-                <li class="list-group-item">instruction</li>
-                <li class="list-group-item">date made</li>
-            </ul>
+        </div>
+        <!-- Display recipe information -->
+        <div>
+            <div class="card" style="width: 75rem;">
+                <div class="card-body">
+                    <h2 class="card-title">{{this_recipe.name}}</h2>
+                    <br>
+                    <p class="card-text"><strong>Description: </strong> {{this_recipe.description}}</p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"> <strong>Under 30 minutes: </strong>
+                        {% if this_recipe.under_30 == 1%}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </li>
+                    <li class="list-group-item nowrap"><strong>Instructions: </strong> <br> {{this_recipe.instructions}}</li>
+                    <li class="list-group-item"><strong>Date Made: </strong> {{this_recipe.date_made}}</li>
+                </ul>
+            </div>
         </div>
     </div>
 </body>
