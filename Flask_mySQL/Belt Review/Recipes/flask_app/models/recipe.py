@@ -16,7 +16,7 @@ class Recipe:
         self.under_30 = data["under_30"]
         self.created_at = data["created_at"]
         self.updated_at = data["updated_at"]
-        self.creator = None
+        self.user_id = data["user_id"]
     
     # Method to create a recipe
     @classmethod
@@ -30,7 +30,7 @@ class Recipe:
     # Method to display all recipes
     @classmethod
     def display_recipes(cls, data):
-        query = "SELECT * FROM recipes WHERE user_id = %(id)s;"
+        query = "SELECT * FROM recipes;"
         results = connectToMySQL(cls.schema).query_db(query, data)
         all_recipes = []
         if not results or len(results) == 0:  # No books are registered
@@ -52,3 +52,8 @@ class Recipe:
         this_recipe = cls(results[0])
         return this_recipe
     
+    # Edit a recipe's information
+    @classmethod
+    def edit(cls, data):
+        query = "UPDATE recipes set name=%(name)s, description=%(description)s, instructions=%(instructions)s, date_made=%(date_made)s, under_30=%(under_30)s, updated_at=NOW() WHERE id=%(id)s;"
+        return connectToMySQL(cls.schema).query_db(query, data)

@@ -61,6 +61,7 @@ def display_dashboard():
         return redirect("/")
     # Data to display the user's first name
     data = {"id": session['id']}
+    print("session" + str(session['id']))
     return render_template("dashboard.html", one_user = user.User.display_user(data), \
         all_recipes = recipe.Recipe.display_recipes(data))
 

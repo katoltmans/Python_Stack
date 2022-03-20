@@ -43,10 +43,36 @@ def view_recipe(num):
     return render_template("view_recipe.html", one_user = user.User.display_user(data), \
         this_recipe = recipe.Recipe.view_one_recipe(data))
 
+# Route to display edit recipe page
+@app.route("/recipes/edit/<int:num>")
+def display_edit_recipe_page(num):
+    # Check to see if the user is in session
+    if "id" not in session:
+        return redirect("/")
+    # Data to display the user's first name
+    data = {
+        "id": session['id'],
+        "first_name": session['first_name'],
+        "recipe_id": num
+        }
+    return render_template("edit_recipe.html", \
+        this_recipe = recipe.Recipe.view_one_recipe(data))
+
 # Route to edit an existing recipe
-@app.route("/recipes/edit")
-def edit_recipe():
-    pass
+@app.route("/recipes/process/<int:num>", methods=['POST'])
+def edit_recipe(num):
+    print("Got Post Info")
+    print(request.form)
+    data = {
+        "id": num,
+        "name": request.form["name"],
+        "description": request.form["description"],
+        "instructions": request.form["instructions"],
+        "date_made": request.form["date_made"],
+        "under_30": request.form["under_30"],
+    }
+    recipe.Recipe.edit(data)
+    return redirect("/dashboard")
 
 # Route to delete an existing recipe
 @app.route("/recipes/delete")

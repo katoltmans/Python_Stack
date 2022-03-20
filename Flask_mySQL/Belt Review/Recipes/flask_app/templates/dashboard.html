@@ -28,23 +28,27 @@
                     <th>Actions</th>
                 </thead>
                 <tbody>
-                    {% for this_recipe in all_recipes %}
-                        <tr>
-                            <td>{{this_recipe.name}}</td>
-                            <td>
-                                {% if this_recipe.under_30 == 1%}
-                                    Yes
-                                {% else %}
-                                    No
-                                {% endif %}
-                            </td>
-                            <td>
-                                <a href="/recipes/view/{{this_recipe.id}}">view instructions</a>
-                                <a href="">edit</a>
-                                <a href="">delete</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
+                    {% if all_recipes %}
+                        {% for this_recipe in all_recipes %}
+                            <tr>
+                                <td>{{this_recipe.name}}</td>
+                                <td>
+                                    {% if this_recipe.under_30 == 1%}
+                                        Yes
+                                    {% else %}
+                                        No
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <a href="/recipes/view/{{this_recipe.id}}">view instructions</a>
+                                    {% if this_recipe.user_id == session['id'] %}
+                                        <a href="/recipes/edit/{{this_recipe.id}}">edit</a>
+                                        <a href="/recipes/delete/{{this_recipe.id}}">delete</a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
                 </tbody>
             </table>
         </div>

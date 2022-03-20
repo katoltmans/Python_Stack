@@ -53,6 +53,28 @@ CREATE TABLE IF NOT EXISTS `recipes_schema`.`recipes` (
 ENGINE = InnoDB;
 
 
+-- -----------------------------------------------------
+-- Table `recipes_schema`.`favorite_recipes`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `recipes_schema`.`favorite_recipes` (
+  `user_id` INT NOT NULL,
+  `recipe_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `recipe_id`),
+  INDEX `fk_users_has_recipes_recipes1_idx` (`recipe_id` ASC) VISIBLE,
+  INDEX `fk_users_has_recipes_users1_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_users_has_recipes_users1`
+    FOREIGN KEY (`user_id`)
+    REFERENCES `recipes_schema`.`users` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_users_has_recipes_recipes1`
+    FOREIGN KEY (`recipe_id`)
+    REFERENCES `recipes_schema`.`recipes` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
