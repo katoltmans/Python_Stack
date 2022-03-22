@@ -1,0 +1,64 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    vertical-align: top;
+    font-family: sans-serif;
+}
+
+#main {
+    width: 1200px;
+    margin: auto;
+    display: flex;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.flex1 {
+    flex: 1;
+    justify-content: space-between;
+}
+
+#login, #registration {
+    padding: 20px;
+    background-color: gray;
+}
+
+#registration {
+    margin-right: 100px;
+}
+
+#registration h2 {
+    color: #FFB74B;
+}
+
+#login h2 {
+    color: #FF9900;
+}
+
+h2 {
+    font-weight: bold;
+    font-size: 200%;
+}
+
+button {
+    background-color: #FFB74B;
+    Padding: 3px 5px;
+    font-weight: bold;
+    border-radius: 5px;
+    border: darkslategray 2px solid;
+}
+
+#login button {
+    background-color: #FF9900;
+}
+
+label {
+    color: whitesmoke;
+}
+
+.form-text {
+    color: black;
+}
