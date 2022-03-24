@@ -16,21 +16,46 @@
             <h1 class="flex1">CodingDojo Wall</h1>
             <div class="logout flex1">
                 <h2 class="flex1">Welcome, {{one_user.first_name}}!</h2>
-                <a href="/logout">Logout</a>
+                <button><a href="/logout">Logout</a></button>
             </div>
         </div>
         <!-- message section-->
-        <div class="content">
+        <div class="content flex">
             <!-- section to display messages-->
-            <div>
+            <div class="flex1">
                 <h3>___ Message(s) for You</h3>
-                <!-- Code to display messages here-->
+                {% for one_message in all_messages %}
+                    <div class="received_messages_row flex">
+                        <p>{{one_message.sender.first_name}} said <br>
+                            "{{one_message.message}}"
+                        <button><a href="/">Delete</a></button>
+                    </div>
+                    
+                {% endfor %}
             </div>
             <!-- section to send messages-->   
-            <div>
+            <div class="flex1">
                 <h3>Send Messages</h3>
-                <form action="/" method="POST">
-                    <!-- create loop to display message fields for friends-->
+                <p>You have sent ___ messages so far.</a>
+                <form action="/" method="POST" class="flex">
+                    <div class="error_message">
+                        {% with messages = get_flashed_messages(category_filter=["message_sent"]) %}
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <p>{{message}}</p>
+                                {% endfor %}
+                            {% endif%}
+                        {% endwith %}
+                    </div>
+                    <div>
+                        {% for one_friend in all_friends %}
+                            <div class="message_row flex flex_end">
+                                {{one_friend.first_name}}
+                                <textarea name="message" cols="40" rows="3"></textarea>
+                                <button class="submit" type="submit" class="btn">Send</button>
+                            </div>
+                        {% endfor %}
+                    </div>
                 </form>
             </div>
         </div>

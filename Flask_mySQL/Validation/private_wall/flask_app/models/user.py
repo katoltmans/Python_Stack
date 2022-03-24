@@ -57,10 +57,25 @@ class User:
         query = "SELECT * FROM users WHERE email = %(email)s;"
         results = connectToMySQL(cls.schema).query_db(query, data)
         # Action when no matching email is found
-        if len(results) <1:  # Can also do ==0?
+        if len(results) <1:
             return False
         return cls(results[0])
         
+    @classmethod
+    def get_friends(cls, data):
+        query = "SELECT * FROM friendships LEFT JOIN users ON users.id = friendships.user2_id WHERE user_id = %(id)s;"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        # Action when no firends are found
+        if len(results) <1:  
+            return []
+        else:
+            friends = [] # Empty list to collect friends
+            #Iterate through list of friends
+            for row_in_db in results:
+                one_friend = cls(row_in_db)
+                friends.append(one_friend)
+        return friends
+                
 
 
     # Static method to diplay flash messages for registration
