@@ -38,27 +38,34 @@ CREATE TABLE IF NOT EXISTS `private_wall_schema`.`messages` (
   `message` TEXT NULL,
   `created_at` DATETIME NULL DEFAULT NOW(),
   `updated_at` DATETIME NULL DEFAULT NOW() ON UPDATE NOW(),
-  PRIMARY KEY (`id`))
+  `users_id` INT NOT NULL,
+  PRIMARY KEY (`id`),
+  INDEX `fk_messages_users1_idx` (`users_id` ASC) VISIBLE,
+  CONSTRAINT `fk_messages_users1`
+    FOREIGN KEY (`users_id`)
+    REFERENCES `private_wall_schema`.`users` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `private_wall_schema`.`users_has_messages`
+-- Table `private_wall_schema`.`friendships`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `private_wall_schema`.`users_has_messages` (
-  `users_id` INT NOT NULL,
-  `messages_id` INT NOT NULL,
-  PRIMARY KEY (`users_id`, `messages_id`),
-  INDEX `fk_users_has_messages_messages1_idx` (`messages_id` ASC) VISIBLE,
-  INDEX `fk_users_has_messages_users_idx` (`users_id` ASC) VISIBLE,
-  CONSTRAINT `fk_users_has_messages_users`
-    FOREIGN KEY (`users_id`)
+CREATE TABLE IF NOT EXISTS `private_wall_schema`.`friendships` (
+  `user_id` INT NOT NULL,
+  `user2_id` INT NOT NULL,
+  PRIMARY KEY (`user_id`, `user2_id`),
+  INDEX `fk_users_has_users_users2_idx` (`user2_id` ASC) VISIBLE,
+  INDEX `fk_users_has_users_users1_idx` (`user_id` ASC) VISIBLE,
+  CONSTRAINT `fk_users_has_users_users1`
+    FOREIGN KEY (`user_id`)
     REFERENCES `private_wall_schema`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_users_has_messages_messages1`
-    FOREIGN KEY (`messages_id`)
-    REFERENCES `private_wall_schema`.`messages` (`id`)
+  CONSTRAINT `fk_users_has_users_users2`
+    FOREIGN KEY (`user2_id`)
+    REFERENCES `private_wall_schema`.`users` (`id`)
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

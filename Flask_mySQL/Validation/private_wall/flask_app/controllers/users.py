@@ -39,6 +39,9 @@ def process_registration():
 # Route to process login
 @app.route("/login", methods=["POST"])
 def process_login():
+    # Check to make sure email is valid
+    
+    
     # Check to see if the email exists
     email_data = {
         "email": request.form["email"]
@@ -53,17 +56,7 @@ def process_login():
     # Redirect to the user's dashboard
     return redirect("/wall")
 
-# Route to display dashboard
-@app.route("/dashboard")
-def display_dashboard():
-    # Check to see if the user is in session
-    if "id" not in session:
-        return redirect("/")
-    # Data to display the user's first name
-    data = {"id": session['id']}
-    print("session" + str(session['id']))
-    return render_template("wall.html", one_user = user.User.display_user(data)) #, \
-        #all_recipes = recipe.Recipe.display_recipes(data))
+
 
 # Route to logout
 @app.route("/logout")

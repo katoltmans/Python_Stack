@@ -10,15 +10,31 @@
     width: 1200px;
     margin: auto;
     display: flex;
+    padding: 12px;
 }
+
+.container-fluid {
+    width: 1200px;
+    margin: auto;
+    background-color: navajowhite;
+    padding-right: 0;
+    padding-left: 0;
+}
+
 .header {
     display: flex;
-    justify-content: space-between;
+    background-color: slategray;
+    color: #FF9900;
+    padding: 12px;
+}
+
+.logout {
+    display: flex;
+    justify-content: flex-end;
 }
 
 .flex1 {
     flex: 1;
-    justify-content: space-between;
 }
 
 #login, #registration {
@@ -34,13 +50,12 @@
     color: #FFB74B;
 }
 
-#login h2 {
+#login h2, a {
     color: #FF9900;
 }
 
-h2 {
+h1, h2 {
     font-weight: bold;
-    font-size: 200%;
 }
 
 button {
