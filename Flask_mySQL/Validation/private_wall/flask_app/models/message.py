@@ -17,7 +17,10 @@ class Message:
     
     # Method to create a message
     def create_message(cls, data):
-        pass
+        query = "INSERT INTO messages (message, created_at, updated_at, user_id) VALUES (%(message)s, NOW(), NOW(), %(user_id)s);"
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        print(results)
+        return results
     
     # Method to display messages
     def display_messages(cls, data):

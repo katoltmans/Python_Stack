@@ -17,7 +17,16 @@ def display_wall():
 #Route to process message data
 @app.route("/wall/message/add", methods=["POST"])
 def process_message_data():
-    pass
+    # Redirect if not valid
+    
+    # Create a message dictionary
+    data = {
+        "message": request.form["message"],
+        "user_id": session["id"]
+    }
+    #Call the add message method
+    message.Message.create_message(data)
+    return redirect("/wall")
 
 #Route to display warning page
 @app.route("/danger", methods=["POST"])
