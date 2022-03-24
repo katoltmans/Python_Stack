@@ -37,7 +37,7 @@
             <div class="flex1">
                 <h3>Send Messages</h3>
                 <p>You have sent ___ messages so far.</a>
-                <form action="/" method="POST" class="flex">
+                <form action="/wall/message/add" method="POST" class="flex">
                     <div class="error_message">
                         {% with messages = get_flashed_messages(category_filter=["message_sent"]) %}
                             {% if messages %}

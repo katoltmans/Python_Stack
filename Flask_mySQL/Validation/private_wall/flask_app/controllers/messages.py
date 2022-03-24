@@ -28,8 +28,9 @@ def process_message_data():
     # Create a message dictionary
     data = {
         "message": request.form["message"],
-        "user_id": session["id"],
+        "users_id": session["id"],
     }
+    print(data)
     #Call the add message method
     message.Message.create_message(data)
     return redirect("/wall")

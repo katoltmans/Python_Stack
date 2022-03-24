@@ -18,8 +18,8 @@ class Message:
     # Method to create a message
     @classmethod
     def create_message(cls, data):
-        query = '''INSERT INTO messages (message, created_at, updated_at, user_id) 
-        VALUES (%(message)s, NOW(), NOW(), %(user_id)s);'''
+        query = """INSERT INTO messages (message, created_at, updated_at, users_id) 
+        VALUES (%(message)s, NOW(), NOW(), %(users_id)s);"""
         results = connectToMySQL(cls.schema).query_db(query, data)
         print(results)
         return results
