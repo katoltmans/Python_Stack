@@ -11,10 +11,12 @@ def display_wall():
     # Data to display the user's first name
     data = {"id": session['id']}
     print("session" + str(session['id']))
+    all_messages = message.Message.display_messages_by_sender(data)
     return render_template("wall.html", one_user = user.User.display_user(data), \
         all_friends = user.User.get_friends(data), \
-            all_messages = message.Message.display_messages_by_sender(data), \
-                message_count = message.Message.message_count(data))
+            all_messages = all_messages, \
+                message_count = len(all_messages), \
+                    sent_count = message.Message.message_count(data))
 
 
 #Route to process message data
@@ -37,13 +39,17 @@ def process_message_data():
     return redirect("/wall")
 
 #Route to delete message
-@app.route("/delete", methods=["POST"])
-def delete_message():
+@app.route("/delete/<int:num>")
+def delete_message(num):
     # Check to see if the user is in session
     if "id" not in session:
         return redirect("/danger")
     else:
-        pass
+        data = {
+            "id": num
+        }
+        message.Message.delete_message(data)
+    return redirect("/wall")
 
 #Route to display warning page
 @app.route("/danger")

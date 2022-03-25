@@ -63,9 +63,7 @@ class Message:
     @classmethod
     def message_count(cls, data):
         query='''SELECT COUNT(*) AS count FROM messages 
-        LEFT JOIN friendships ON friendships.user2_id = messages.users_id 
-        LEFT JOIN users ON users.id = friendships.user2_id 
-        WHERE user_id = %(id)s;'''
+        WHERE users_id = %(id)s;'''
         results = connectToMySQL(cls.schema).query_db(query, data)
         count = results[0]["count"]
         print(results)
@@ -79,7 +77,8 @@ class Message:
     # Method to delete a message
     @classmethod
     def delete_message(cls, data):
-        pass
+        query = "DELETE FROM messages WHERE id = %(id)s;"
+        return connectToMySQL(cls.schema).query_db(query, data)
     
     # Static method to check for validations
     @staticmethod
