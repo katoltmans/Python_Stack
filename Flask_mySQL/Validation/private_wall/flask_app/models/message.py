@@ -59,12 +59,25 @@ class Message:
             return all_messages
                 
             
+    # Method for message count
+    @classmethod
+    def message_count(cls, data):
+        query='''SELECT COUNT(*) AS count FROM messages 
+        LEFT JOIN friendships ON friendships.user2_id = messages.users_id 
+        LEFT JOIN users ON users.id = friendships.user2_id 
+        WHERE user_id = %(id)s;'''
+        results = connectToMySQL(cls.schema).query_db(query, data)
+        count = results[0]["count"]
+        print(results)
+        return str(count)
     
     # Method to like a message
+    @classmethod
     def like_message(cls, data):
         pass
     
     # Method to delete a message
+    @classmethod
     def delete_message(cls, data):
         pass
     

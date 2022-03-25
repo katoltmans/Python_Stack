@@ -13,7 +13,7 @@
     padding: 12px;
 }
 
-.container-fluid {
+.container-fluid, #warning {
     width: 1200px;
     margin: auto;
     background-color: navajowhite;
@@ -39,6 +39,7 @@
 
 .flex1 {
     flex: 1;
+    padding: 10px;
 }
 
 .flex_end {
@@ -90,4 +91,23 @@ label {
 
 .form-text {
     color: black;
+}
+
+.red {
+    color: red;
+}
+
+#warning {
+    text-align: center;
+    height: 500px;
+    padding: 20px;
+    font-weight: bold;
+}
+
+#warning * {
+    margin-bottom: 100px;
+}
+
+#warning p {
+    font-size: xx-large;
 }
