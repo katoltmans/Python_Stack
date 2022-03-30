@@ -1,0 +1,165 @@
+/* CSS reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*outline: 1px dotted red;*/
+    font-family: Roboto, sans-serif;
+}
+/* Fixed width container class that will "auto-center" itself */
+#container {
+    width: auto;
+    margin: 0 auto;
+}
+#main {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 200px 20px 200px;
+}
+.flex1 {
+    flex:1;
+}
+.flex2 {
+    flex:2;
+}
+
+/*Navbar styling*/
+
+#navbar {
+    display: flex;
+    background-color: #9FC5F8;
+    color: white;
+    padding: 10px 200px;
+}
+h1 {
+    font-weight: bolder;
+    font-size: 240%;
+}
+#city {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 120%;
+}
+#city a{
+    color:white;
+    text-decoration: none;
+    font-weight: bold;
+}
+/*Main content styling*/
+
+/*City header styling*/
+#SanJoseHeader, .forecast, #alert {
+    display: flex;
+}
+#SanJoseHeader {
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-bottom: 4px solid black;
+}
+h2 {
+    font-size: 190%;
+}
+#SanJoseHeader p {
+    font-size: 110%;
+    font-weight: bold;
+}
+#SanJoseHeader p * {
+    font-size: 110%;
+    font-weight: bold;
+    margin-left: 15px;
+}
+
+/*Forecast styling*/
+.forecast {
+    display: flex;
+    justify-content: space-between;
+}
+.dailyForecast * {
+    display:flex;
+    background-color: lightgray;
+    align-items: center;
+    justify-content: space-around;
+    /*width: 300px;*/
+    padding: 10px 30px;
+}
+.dailyForecast span, .dailyForecast .highLow p {
+    display: inline;
+    width: auto;
+}
+h3 {
+    font-size: 175%;
+    padding: 17px;
+}
+img.dailyForecast {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+    padding: 0px;
+}
+.dailyForecast p {
+    font-size: 150%;
+    font-weight: bold;
+    padding: 17px;
+}
+.temp {
+    font-weight: bolder;
+    font-size: 150%;
+}
+.high {
+    color: red;
+}
+.low {
+    color: royalblue;
+}
+.convert::after {
+    content: "°";
+}
+
+/*Alert styling*/
+#alert{
+    margin: 15px 0px;
+    justify-content: space-between;
+    border: 4px solid black;
+    background-color: lightgray;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+    position: fixed;
+    bottom: 0;
+    width: 80%;
+    left: 200px
+
+}
+#alertText {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    flex:3;
+}
+#alertText * {
+    margin: 15px;
+}
+.text {
+    font-size: 120%;
+}
+.text p {
+    font-size: 140%;
+}
+h4 {
+    font-weight: bolder;
+    font-size: 170%;
+}
+/*button*/
+.acceptBtn {
+    background-color: #6ba1e9;
+    color: black;
+    font-weight: bold;
+    font-size: 120%;
+    padding: 10px;
+    border: 2px solid black;
+    box-shadow: 3px 3px black;
+    white-space: normal;
+}  

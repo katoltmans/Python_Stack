@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>Weather Forecast</title>
+</head>
+
+<body>
+    <div id="container">
+        <div id="navbar">
+            <h1 class="flex1">DojoWeather</h1>
+            <div id="city" class="flex1">
+                <a href="#" onclick="alertMsg(this)">Burbank</a>
+                <a href="#" onclick="alertMsg(this)">Chicago</a>
+                <a href="#" onclick="alertMsg(this)">Dallas</a>
+            </div>
+        </div>
+        <div id="main">
+            <div id="SanJoseHeader">
+                <h2>San Jose</h2>
+                <p>show temperature in <select onchange="convertDegree(this, '.convert')">
+                        <option value="celsius">°C</option>
+                        <option value="fahrenheit">°F</option>
+                    </select>
+                </p>
+            </div>
+            <div class="forecast">
+                <div class="dailyForecast">
+                    <h3>Today</h3>
+                    <div class="dailyForecast">
+                        <img src="assets/some_rain.png" alt="rain image" class="dailyForecast">
+                    </div>
+                    <p>some rain</p>
+                    <div class="highLow temp">
+                        <p class="high convert">24</p>
+                        <p class="low convert">18</p>
+                    </div>
+                </div>
+                <div class="dailyForecast">
+                    <h3>Tomorrow</h3>
+                    <div class="dailyForecast">
+                        <img src="assets/some_sun.png" alt="sun image" class="dailyForecast">
+                    </div>
+                    <p>some sun</p>
+                    <div class="highLow temp">
+                        <p class="high convert">27</p>
+                        <p class="low convert">19</p>
+                    </div>
+                </div>
+                <div class="dailyForecast">
+                    <h3>Friday</h3>
+                    <div class="dailyForecast">
+                        <img src="assets/some_clouds.png" alt="cloud image" class="dailyForecast">
+                    </div>
+                    <p>some clouds</p>
+                    <div class="highLow temp">
+                        <p class="high convert">21</p>
+                        <p class="low convert">16</p>
+                    </div>
+                </div>
+                <div class="dailyForecast">
+                    <h3>Saturday</h3>
+                    <div class="dailyForecast">
+                        <img src="assets/some_sun.png" alt="sun image" class="dailyForecast">
+                    </div>
+                    <p>some sun</p>
+                    <div class="highLow temp">
+                        <p class="high convert">26</p>
+                        <p class="low convert">21</p>
+                    </div>
+                </div>
+            </div>
+            <div id="alert">
+                <div id="alertText" class="">
+                    <div>
+                        <img src="assets/cookie.png" alt="cookie icon">
+                    </div>
+                    <div class="text ">
+                        <h4>Stop! Cookie time</h4>
+                        <p class="flex2">We use cookies (sadly not the edible ones) to personalize
+                            content and ads, to provide social media features and to
+                            analyze our traffic. <a href=#>Read more...</a></p>
+                    </div>
+                </div>
+                <div id="alertButton" class="">
+                    <button class="acceptBtn" onclick="removeAlert('alert')">I Accept</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
